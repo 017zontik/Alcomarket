@@ -4,10 +4,20 @@ import com.tms.data.Alcohol;
 import com.tms.data.AlcoholType;
 import com.tms.services.*;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    static IAlcoholTypeService alcoholTypeservice = new AlcoholTypeService();
+    static IAlcoholTypeService alcoholTypeservice;
+
+    static {
+        try {
+            alcoholTypeservice = new AlcoholTypeService();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     static IAlcoholService alcoholservice = new AlcoholService(alcoholTypeservice);
 
 

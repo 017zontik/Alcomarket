@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataSourceUtil {
-    private final static String url = "jdbc:mysql://localhost:3306/alcomarket";
+    private final static String url = "jdbc:mysql://localhost:3306/alcomarket?serverTimezone=UTC";
     private final static String user = "admin";
     private final static String password = "171986";
 
