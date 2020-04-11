@@ -10,6 +10,8 @@ public class AlcoholService implements IAlcoholService {
     private List<Alcohol> alcoList;
     public int nextId;
 
+
+
     public AlcoholService() {
         this.alcoList = new ArrayList<>();
         alcoList.add(new Alcohol(nextId++,"Alivaria",5,new AlcoholType("beer",1)));
@@ -28,5 +30,15 @@ public class AlcoholService implements IAlcoholService {
         newAlcohol.setId(nextId++);
         this.alcoList.add(newAlcohol);
 
+    }
+
+    @Override
+    public Alcohol getById(int id) throws AlcoholNotFoundException {
+       for(Alcohol alcohol: alcoList){
+           if(id==alcohol.getId()){
+               return alcohol;
+           }
+       }
+       throw new AlcoholNotFoundException();
     }
 }

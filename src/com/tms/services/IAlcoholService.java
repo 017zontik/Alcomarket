@@ -7,4 +7,5 @@ import java.util.List;
 public interface IAlcoholService {
     List<Alcohol> getList();
     void addAlcohol(Alcohol newAlcohol);
+    Alcohol getById(int id) throws AlcoholNotFoundException;
 }
