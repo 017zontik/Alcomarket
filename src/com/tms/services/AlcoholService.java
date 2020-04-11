@@ -41,4 +41,9 @@ public class AlcoholService implements IAlcoholService {
        }
        throw new AlcoholNotFoundException();
     }
+
+    @Override
+    public void dellAlcohol(Alcohol dellAlcohol) {
+        this.alcoList.remove(dellAlcohol);
+    }
 }
