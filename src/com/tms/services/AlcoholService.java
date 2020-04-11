@@ -15,8 +15,8 @@ public class AlcoholService implements IAlcoholService {
     public AlcoholService() {
         this.alcoList = new ArrayList<>();
         alcoList.add(new Alcohol(nextId++,"Alivaria",5,new AlcoholType("beer",1)));
-        alcoList.add(new Alcohol(nextId++,"Finliandia",10,new AlcoholType("vodka",2)));
-        alcoList.add(new Alcohol(nextId++,"Tequila",15,new AlcoholType("tequila",3)));
+        alcoList.add(new Alcohol(nextId++,"Finliandia",10,new AlcoholType("Vodka",2)));
+        alcoList.add(new Alcohol(nextId++,"Tequila",15,new AlcoholType("Hard alcohol",4)));
     }
 
 
