@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alcohols>
+    <alcohol name="Alivaria" price="5" type="Beer"></alcohol>
+    <alcohol name="Finliandia" price="10" type="Vodka"></alcohol>
+    <alcohol name="Tequila" price="15" type="Hard alcohol"></alcohol>
+</alcohols>

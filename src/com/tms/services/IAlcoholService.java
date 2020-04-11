@@ -9,4 +9,6 @@ public interface IAlcoholService {
     void addAlcohol(Alcohol newAlcohol);
     Alcohol getById(int id) throws AlcoholNotFoundException;
     void dellAlcohol(Alcohol dellAlcohol);
+
+    void loadFromFile(String filePath);
 }
