@@ -1,19 +1,14 @@
 package com.tms.services;
 
-import com.tms.data.Alcohol;
 import com.tms.data.AlcoholType;
 import com.tms.repositories.AlcoholTypeRepositories;
-import com.tms.repositories.DataSourceUtil;
 import com.tms.repositories.IAlcoholTypesRepositories;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AlcoholTypeService implements IAlcoholTypeService {
 
-    private IAlcoholTypesRepositories alcoholTypesRepositories = new AlcoholTypeRepositories(DataSourceUtil.getConnection());
+    private IAlcoholTypesRepositories alcoholTypesRepositories = new AlcoholTypeRepositories();
 
     public AlcoholTypeService() throws SQLException {
         if (alcoholTypesRepositories.getByName("Beer") == null) {

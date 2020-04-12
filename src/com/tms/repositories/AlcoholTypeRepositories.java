@@ -1,16 +1,21 @@
 package com.tms.repositories;
 
 import com.tms.data.AlcoholType;
-import com.tms.services.AlcoholTypeNotFoundException;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class AlcoholTypeRepositories implements IAlcoholTypesRepositories{
     Connection conn;
-    public AlcoholTypeRepositories(Connection conn) {
-
-        this.conn = conn;
+    public AlcoholTypeRepositories() {
+        try {
+            this.conn = DataSourceUtil.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

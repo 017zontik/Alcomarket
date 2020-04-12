@@ -1,7 +1,6 @@
 package com.tms.repositories;
 
 import com.tms.data.AlcoholType;
-import com.tms.services.AlcoholTypeNotFoundException;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -2,6 +2,10 @@ package com.tms.services;
 
 import com.tms.data.Alcohol;
 import com.tms.data.AlcoholType;
+import com.tms.repositories.AlcoholRepositories;
+import com.tms.repositories.DataSourceUtil;
+import com.tms.repositories.IAlcoholRepositories;
+import com.tms.repositories.IAlcoholTypesRepositories;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -11,6 +15,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,23 +23,27 @@ public class AlcoholService implements IAlcoholService {
     private List<Alcohol> alcoList;
     private int nextId;
     private IAlcoholTypeService alcoholTypeService;
+    private IAlcoholRepositories alcoholRepositories;
 
 
     public AlcoholService(IAlcoholTypeService alcoholTypeService) {
         this.alcoholTypeService = alcoholTypeService;
-        this.alcoList = new ArrayList<>();
+        alcoholRepositories = new AlcoholRepositories();
+
     }
 
 
     @Override
     public List<Alcohol> getList() {
+
         return alcoList;
     }
 
     @Override
     public void addAlcohol(Alcohol newAlcohol) {
-        newAlcohol.setId(nextId++);
-        this.alcoList.add(newAlcohol);
+        alcoholRepositories.createAlcohol(newAlcohol);
+//        newAlcohol.setId(nextId++);
+//        this.alcoList.add(newAlcohol);
 
     }
 
@@ -60,7 +69,7 @@ public class AlcoholService implements IAlcoholService {
             documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = documentBuilder.parse(filePath);
             NodeList alcohols = document.getDocumentElement().getChildNodes();
-            for (int i = 0; i <alcohols.getLength() ; i++) {
+            for (int i = 0; i < alcohols.getLength(); i++) {
                 Node alcoholNode = alcohols.item(i);
                 if (alcoholNode.getNodeType() != Node.TEXT_NODE) {
                     String name = alcoholNode.getAttributes().getNamedItem("name").getNodeValue();
@@ -77,8 +86,7 @@ public class AlcoholService implements IAlcoholService {
             }
 
 
-
-        } catch (ParserConfigurationException | SAXException  | IOException e) {
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
 
