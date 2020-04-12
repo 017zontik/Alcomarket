@@ -1,7 +1,6 @@
 package com.tms;
 
 import com.tms.data.Alcohol;
-import com.tms.data.AlcoholType;
 import com.tms.services.*;
 
 import java.sql.SQLException;
@@ -31,7 +30,7 @@ public class Main {
             System.out.println("Для выхода из программы введите команду exit ");
             System.out.println("Для добавления нового продукта введите команду add ");
             System.out.println("Для редактирования описания продукта введите команду edit ");
-            System.out.println("Для удаления продукта введите команду dell ");
+            System.out.println("Для удаления продукта введите команду del ");
             System.out.println("Для загрузки списка из внешнего файла введите команду load ");
             String request = sc.nextLine();
             if (request.equals("list")) {
@@ -50,7 +49,7 @@ public class Main {
                 String type = sc.nextLine();
                 Alcohol newAlcohol = null;
                 try {
-                    newAlcohol = new Alcohol(0,name, price,alcoholTypeservice.getByName(type));
+                    newAlcohol = new Alcohol(0, name, price, alcoholTypeservice.getByName(type));
                     alcoholservice.addAlcohol(newAlcohol);
                 } catch (AlcoholTypeNotFoundException e) {
                     System.out.println("Не найден указанный тип алкоголя");
@@ -58,7 +57,7 @@ public class Main {
 
 
             }
-            if(request.equals("edit")){
+            if (request.equals("edit")) {
                 System.out.println("Введите № продукта: ");
                 int id = Integer.parseInt(sc.nextLine());
                 try {
@@ -78,23 +77,24 @@ public class Main {
                     } catch (AlcoholTypeNotFoundException e) {
                         System.out.println("Не найден указанный тип алкоголя");
                     }
+                    alcoholservice.save(editAlcohol);
 
                 } catch (AlcoholNotFoundException e) {
                     System.out.println("Такого индекса не существует!");
                 }
             }
-            if(request.equals("dell")){
+            if (request.equals("del")) {
                 System.out.println("Введите № продукта: ");
                 int id = Integer.parseInt(sc.nextLine());
                 try {
-                    Alcohol dellAlcohol = alcoholservice.getById(id);
-                    alcoholservice.dellAlcohol(dellAlcohol);
+                    Alcohol delAlcohol = alcoholservice.getById(id);
+                    alcoholservice.delAlcohol(delAlcohol);
 
                 } catch (AlcoholNotFoundException e) {
                     System.out.println("Такого индекса не существует!");
                 }
             }
-            if(request.equals("load")){
+            if (request.equals("load")) {
                 System.out.println("Ведите путь к файлу с данными: ");
                 String filePath = sc.nextLine();
                 alcoholservice.loadFromFile(filePath);
@@ -111,7 +111,7 @@ public class Main {
     }
 
     private static void printAlcohol(Alcohol alcohol) {
-        System.out.println("№ " + alcohol.getId()+ " " +"Название: " + alcohol.getName() + " цена: " + alcohol.getPrice() +
+        System.out.println("№ " + alcohol.getId() + " " + "Название: " + alcohol.getName() + " цена: " + alcohol.getPrice() +
                 " вид алкоголя: " + alcohol.getType().getTypeName());
     }
 

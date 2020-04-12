@@ -1,14 +1,14 @@
 package com.tms.services;
 
 import com.tms.data.AlcoholType;
-import com.tms.repositories.AlcoholTypeRepositories;
-import com.tms.repositories.IAlcoholTypesRepositories;
+import com.tms.repositories.AlcoholTypeRepository;
+import com.tms.repositories.IAlcoholTypesRepository;
 
 import java.sql.SQLException;
 
 public class AlcoholTypeService implements IAlcoholTypeService {
 
-    private IAlcoholTypesRepositories alcoholTypesRepositories = new AlcoholTypeRepositories();
+    private IAlcoholTypesRepository alcoholTypesRepositories = new AlcoholTypeRepository();
 
     public AlcoholTypeService() throws SQLException {
         if (alcoholTypesRepositories.getByName("Beer") == null) {
@@ -40,4 +40,5 @@ public class AlcoholTypeService implements IAlcoholTypeService {
         return null;
 
     }
+
 }

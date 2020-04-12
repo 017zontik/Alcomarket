@@ -6,11 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
-public class AlcoholTypeRepositories implements IAlcoholTypesRepositories{
+public class AlcoholTypeRepository implements IAlcoholTypesRepository {
     Connection conn;
-    public AlcoholTypeRepositories() {
+    public AlcoholTypeRepository() {
         try {
             this.conn = DataSourceUtil.getConnection();
         } catch (SQLException e) {
@@ -28,10 +27,7 @@ public class AlcoholTypeRepositories implements IAlcoholTypesRepositories{
         prst.execute();
     }
 
-    @Override
-    public List<AlcoholType> getListType() {
-        return null;
-    }
+
 
     @Override
     public AlcoholType getByName(String typeName) throws SQLException {
@@ -43,6 +39,20 @@ public class AlcoholTypeRepositories implements IAlcoholTypesRepositories{
             return new AlcoholType(rs.getString(2),rs.getInt(1));
         }
         return null;
+
+    }
+
+    @Override
+    public AlcoholType getById(int alcoholTypeId) throws SQLException {
+        String sql = "select * from `alcoholTypes` where `id`=?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setInt(1,alcoholTypeId);
+        ResultSet rs = statement.executeQuery();
+        if(rs.first()){
+            return new AlcoholType(rs.getString(2),rs.getInt(1));
+        }
+        return null;
+
 
     }
 }

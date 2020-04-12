@@ -3,11 +3,10 @@ package com.tms.repositories;
 import com.tms.data.AlcoholType;
 
 import java.sql.SQLException;
-import java.util.List;
 
-public interface IAlcoholTypesRepositories {
+public interface IAlcoholTypesRepository {
     void createAlcoholType(AlcoholType newType) throws SQLException;
-    List<AlcoholType> getListType();
     AlcoholType getByName(String typeName) throws SQLException;
 
+    AlcoholType getById(int alcoholTypeId) throws SQLException;
 }
