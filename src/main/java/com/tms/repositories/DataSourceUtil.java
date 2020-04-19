@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataSourceUtil {
-    private final static String url = "jdbc:mysql://localhost:3306/alcomarket?serverTimezone=UTC";
-    private final static String user = "admin";
+    private final static String url = "jdbc:mysql://localhost:3306/alcomarket?createDatabaseIfNotExist=true&serverTimezone=UTC";
+    private final static String user = "root";
     private final static String password = "171986";
 
     public static  Connection getConnection() throws SQLException {

@@ -19,7 +19,7 @@ public class AlcoholTypeRepository implements IAlcoholTypesRepository {
 
     @Override
     public void createAlcoholType(AlcoholType newType) throws SQLException {
-        String sql = "INSERT INTO alcoholtypes (id,type) VALUES (?, ?)";
+        String sql = "INSERT INTO alcohol_types (id,type) VALUES (?, ?)";
         PreparedStatement prst = conn.prepareStatement(sql);
 
         prst.setInt(1, newType.getId());
@@ -31,7 +31,7 @@ public class AlcoholTypeRepository implements IAlcoholTypesRepository {
 
     @Override
     public AlcoholType getByName(String typeName) throws SQLException {
-        String sql = "select * from `alcoholTypes` where `type`=?";
+        String sql = "select * from `alcohol_types` where `type`=?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1,typeName);
         ResultSet rs = statement.executeQuery();
@@ -44,7 +44,7 @@ public class AlcoholTypeRepository implements IAlcoholTypesRepository {
 
     @Override
     public AlcoholType getById(int alcoholTypeId) throws SQLException {
-        String sql = "select * from `alcoholTypes` where `id`=?";
+        String sql = "select * from `alcohol_types` where `id`=?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setInt(1,alcoholTypeId);
         ResultSet rs = statement.executeQuery();
